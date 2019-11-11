@@ -16,7 +16,7 @@ function yellow(text) {
  * Do NOT allow using `npm` as package manager.
  */
 if (process.env.npm_execpath.indexOf('yarn') === -1) {
-	console.log(red('*** canX uses yarn for package management ***'), '\n');
+	console.log(red('*** recordskip uses yarn for package management ***'), '\n');
 	console.log(yellow('To install all packages:'));
 	console.log(cyan('$'), 'yarn', '\n');
 	console.log(yellow('To install a new (runtime) package to "dependencies":'));
