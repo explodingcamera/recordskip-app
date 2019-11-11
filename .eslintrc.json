@@ -1,0 +1,6 @@
+{
+	"root": true,
+	"extends": [
+		"@canx/eslint-config"
+	]
+}

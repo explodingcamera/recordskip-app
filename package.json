@@ -1,0 +1,48 @@
+{
+  "name": "recordskip-app",
+  "version": "0.0.0",
+  "private": true,
+  "description": "",
+  "homepage": "https://github.com/recordskip/recordskip-app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/recordskip/recordskip-app.git"
+  },
+  "author": "Henry Gressmann <mail@henrygressmann.de> (https://henrygressmann.de)",
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "./"
+    ]
+  },
+  "scripts": {
+    "build": "lerna run build --ignore recordskip-app",
+    "bump-version": "lerna version --github-release --conventional-commits",
+    "clean": "lerna clean",
+    "eslint": "eslint . --quiet --format=pretty --fix --cache",
+    "preinstall": "node scripts/preinstall.js",
+    "sort-package-json": "sort-package-json && sort-package-json packages/*/package.json",
+    "test": "lerna run --stream --ignore recordskip-app test && yarn run eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run test && yarn run sort-package-json"
+    }
+  },
+  "dependencies": {
+    "cross-env": "6.0.3"
+  },
+  "devDependencies": {
+    "@canx/eslint-config": "8.0.1",
+    "eslint": "6.6.0",
+    "eslint-formatter-pretty": "2.1.1",
+    "husky": "3.0.9",
+    "lerna": "3.18.3",
+    "prettier": "1.18.2",
+    "sort-package-json": "1.22.1"
+  },
+  "engines": {
+    "node": ">= 6.9.0 < 13.0.0",
+    "yarn": ">= 1.15.0"
+  }
+}
