@@ -1,8 +1,10 @@
+/* eslint unicorn/filename-case: 0 */
+
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import AppNavigator from './navigation/app-navigator';
@@ -18,14 +20,14 @@ export default function App(props) {
 				onFinish={() => handleFinishLoading(setLoadingComplete)}
 			/>
 		);
+	} else {
+		return (
+			<View>
+				{Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+				<AppNavigator />
+			</View>
+		);
 	}
-
-	return (
-		<View style={styles.container}>
-			{Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-			<AppNavigator />
-		</View>
-	);
 }
 
 async function loadResourcesAsync() {
@@ -45,18 +47,9 @@ async function loadResourcesAsync() {
 }
 
 function handleLoadingError(error) {
-	// In this case, you might want to report the error to your error reporting
-	// service, for example Sentry
 	console.warn(error);
 }
 
 function handleFinishLoading(setLoadingComplete) {
 	setLoadingComplete(true);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-	},
-});

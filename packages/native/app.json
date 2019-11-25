@@ -1,6 +1,8 @@
 {
   "expo": {
-    "entryPoint": "./app.js",
+    "packagerOpts": {
+      "config": "metro.config.js"
+    },
     "name": "RecordSkip",
     "slug": "recordskip",
     "privacy": "public",

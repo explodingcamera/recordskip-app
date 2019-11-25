@@ -1,48 +1,48 @@
 {
-  "name": "recordskip-app",
-  "version": "0.0.0",
-  "private": true,
-  "description": "",
-  "homepage": "https://github.com/recordskip/recordskip-app",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/recordskip/recordskip-app.git"
-  },
-  "author": "Henry Gressmann <mail@henrygressmann.de> (https://henrygressmann.de)",
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "./"
-    ]
-  },
-  "scripts": {
-    "build": "lerna run build --ignore recordskip-app",
-    "bump-version": "lerna version --github-release --conventional-commits",
-    "clean": "lerna clean",
-    "eslint": "eslint . --quiet --format=pretty --fix --cache",
-    "preinstall": "node scripts/preinstall.js",
-    "sort-package-json": "sort-package-json && sort-package-json packages/*/package.json",
-    "test": "lerna run --stream --ignore recordskip-app test && yarn run eslint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn run test && yarn run sort-package-json"
-    }
-  },
-  "dependencies": {
-    "cross-env": "6.0.3"
-  },
-  "devDependencies": {
-    "@canx/eslint-config": "8.0.1",
-    "eslint": "6.6.0",
-    "eslint-formatter-pretty": "2.1.1",
-    "husky": "3.0.9",
-    "lerna": "3.18.4",
-    "prettier": "1.19.1",
-    "sort-package-json": "1.23.1"
-  },
-  "engines": {
-    "node": ">= 6.9.0 < 13.0.0",
-    "yarn": ">= 1.15.0"
-  }
+	"name": "recordskip-app",
+	"version": "0.0.0",
+	"private": true,
+	"description": "",
+	"homepage": "https://github.com/recordskip/recordskip-app",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/recordskip/recordskip-app.git"
+	},
+	"author": "Henry Gressmann <mail@henrygressmann.de> (https://henrygressmann.de)",
+	"workspaces": {
+		"packages": [
+			"packages/*",
+			"./"
+		]
+	},
+	"scripts": {
+		"build": "lerna run build --ignore recordskip-app",
+		"bump-version": "lerna version --github-release --conventional-commits",
+		"clean": "lerna clean",
+		"eslint": "eslint . --quiet --format=pretty --fix --cache",
+		"preinstall": "node scripts/preinstall.js",
+		"sort-package-json": "sort-package-json && sort-package-json packages/*/package.json",
+		"test": "lerna run --stream --ignore recordskip-app test && yarn run eslint"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "yarn run test && yarn run sort-package-json"
+		}
+	},
+	"dependencies": {
+		"cross-env": "6.0.3"
+	},
+	"devDependencies": {
+		"@explodingcamera/eslint-config": "1.1.1",
+		"eslint": "6.7.1",
+		"eslint-formatter-pretty": "3.0.1",
+		"husky": "3.1.0",
+		"lerna": "3.19.0",
+		"prettier": "1.19.1",
+		"sort-package-json": "1.24.0"
+	},
+	"engines": {
+		"node": ">= 6.9.0 < 13.0.0",
+		"yarn": ">= 1.15.0"
+	}
 }

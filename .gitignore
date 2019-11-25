@@ -4,3 +4,4 @@ npm-debug.log
 .eslintcache
 .vscode/
 .idea/
+__generated__
