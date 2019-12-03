@@ -41,7 +41,7 @@ export default function App() {
 									name="library"
 									component={Library}
 									options={{
-										tabBarColor: 'grey',
+										tabBarColor: 'transparent',
 										tabBarLabel: 'library',
 										tabBarIcon: ({ color }) => (
 											<Feather

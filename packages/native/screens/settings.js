@@ -1,14 +1,24 @@
 import React from 'react';
-import { ExpoConfigView } from '@expo/samples';
+import styled from 'styled-components/native';
 
-export default function SettingsScreen() {
-	/**
-	 * Go ahead and delete ExpoConfigView and replace it with your content;
-	 * we just wanted to give you a quick view of your config.
-	 */
-	return <ExpoConfigView />;
+import { Text } from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
+
+const Wrapper = styled(SafeAreaView)`
+	flex: 1;
+	justify-content: space-between;
+	align-items: center;
+`;
+
+function Settings() {
+	return (
+		<>
+			<Wrapper forceInset={{ top: 'always' }}>
+				<Text>This is top text.</Text>
+				<Text>This is bottom text.</Text>
+			</Wrapper>
+		</>
+	);
 }
 
-SettingsScreen.navigationOptions = {
-	title: 'app.json',
-};
+export default Settings;
