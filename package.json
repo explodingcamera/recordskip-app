@@ -34,12 +34,12 @@
 	},
 	"devDependencies": {
 		"@explodingcamera/eslint-config": "1.1.1",
-		"eslint": "6.7.1",
+		"eslint": "6.7.2",
 		"eslint-formatter-pretty": "3.0.1",
 		"husky": "3.1.0",
 		"lerna": "3.19.0",
 		"prettier": "1.19.1",
-		"sort-package-json": "1.24.0"
+		"sort-package-json": "1.30.0"
 	},
 	"engines": {
 		"node": ">= 6.9.0 < 13.0.0",

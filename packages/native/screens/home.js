@@ -1,167 +1,126 @@
-import * as WebBrowser from 'expo-web-browser';
-import React from 'react';
-import {
-	Image,
-	Platform,
-	ScrollView,
-	StyleSheet,
-	Text,
-	TouchableOpacity,
-	View,
-} from 'react-native';
+import React, { useState, useCallback, useRef } from 'react';
+import { Text, View, StyleSheet, Dimensions, Image } from 'react-native';
+import { useFocusEffect, useIsFocused } from '@react-navigation/core';
 
-export default function HomeScreen() {
-	return (
-		<View style={styles.container}>
-			<ScrollView
-				style={styles.container}
-				contentContainerStyle={styles.contentContainer}
-			>
-				<View style={styles.welcomeContainer}>
-					<Image
-						source={
-							__DEV__
-								? require('../assets/images/robot-dev.png')
-								: require('../assets/images/robot-prod.png')
-						}
-						style={styles.welcomeImage}
-					/>
-				</View>
+import SafeAreaView from 'react-native-safe-area-view';
 
-				<View style={styles.helpContainer}>
-					<TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-						<Text style={styles.helpLinkText}>YAY TEXT</Text>
-					</TouchableOpacity>
-				</View>
-			</ScrollView>
-		</View>
-	);
-}
+import * as Permissions from 'expo-permissions';
+import { Camera } from 'expo-camera';
+import { Feather } from '@expo/vector-icons';
 
-HomeScreen.navigationOptions = {
-	header: null,
-};
+function Home() {
+	const [hasCameraPermission, setCameraPermissions] = useState(null);
+	const [flashEnabled, setFlashEnabled] = useState(false);
+	const [type, setType] = useState(Camera.Constants.Type.back);
+	const camera = useRef();
+	const focused = useIsFocused();
 
-function DevelopmentModeNotice() {
-	if (__DEV__) {
-		const learnMoreButton = (
-			<Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-				Learn more
-			</Text>
-		);
-
-		return (
-			<Text style={styles.developmentModeText}>
-				Development mode is enabled: your app will be slower but you can use
-				useful development tools. {learnMoreButton}
-			</Text>
-		);
+	async function checkPermissions() {
+		const { status } = await Permissions.askAsync(Permissions.CAMERA);
+		setCameraPermissions(status === 'granted');
 	}
 
+	useFocusEffect(
+		useCallback(() => {
+			checkPermissions();
+		}, []),
+	);
+
+	const { height, width } = Dimensions.get('window');
+	const newWidth = height * (3 / 4);
+	const widthOffset = -((newWidth - width) / 2);
+
 	return (
-		<Text style={styles.developmentModeText}>
-			You are not in development mode: your app will run at full speed.
-		</Text>
+		<>
+			<View
+				style={{
+					zIndex: -1,
+					...StyleSheet.absoluteFill,
+					left: widthOffset,
+					right: widthOffset,
+					backgroundColor: 'black',
+				}}
+			>
+				{hasCameraPermission && focused && (
+					<Camera
+						onMountError={e => console.error(e)}
+						ref={camera}
+						type={type}
+						ratio="4:3"
+						flashMode={flashEnabled ? 'torch' : 'off'}
+						style={{
+							flex: 1,
+							justifyContent: 'space-between',
+						}}
+					/>
+				)}
+			</View>
+			<SafeAreaView
+				forceInset={{ top: 'always' }}
+				style={{
+					background: 'transparent',
+					flex: 1,
+					justifyContent: 'space-between',
+					alignItems: 'center',
+				}}
+			>
+				{hasCameraPermission === false && (
+					<View
+						style={{
+							position: 'absolute',
+							top: 0,
+							left: 0,
+							right: 0,
+							bottom: 0,
+							justifyContent: 'center',
+							alignItems: 'center',
+						}}
+						onClick={checkPermissions}
+					>
+						<Text
+							style={{
+								color: 'white',
+								fontSize: 20,
+							}}
+						>
+							No access to camera
+						</Text>
+					</View>
+				)}
+
+				<View style={{ padding: 5, alignSelf: 'flex-end' }}>
+					<Feather
+						name="settings"
+						size={26}
+						color="white"
+						style={{ padding: 10 }}
+					/>
+					<Feather
+						name={flashEnabled ? 'zap-off' : 'zap'}
+						onPress={() => setFlashEnabled(e => !e)}
+						size={26}
+						color="white"
+						style={{ padding: 10 }}
+					/>
+				</View>
+				<View>
+					<Image
+						source={require('../assets/images/logo-white.png')}
+						fadeDuration={0}
+						style={{
+							width: 100,
+							height: 100,
+							marginBottom: 20,
+							shadowColor: '#000',
+							shadowOffset: { width: 0, height: 2 },
+							shadowOpacity: 0.5,
+							shadowRadius: 2,
+						}}
+					/>
+				</View>
+			</SafeAreaView>
+		</>
 	);
 }
 
-function handleLearnMorePress() {
-	WebBrowser.openBrowserAsync(
-		'https://docs.expo.io/versions/latest/workflow/development-mode/',
-	);
-}
-
-function handleHelpPress() {
-	WebBrowser.openBrowserAsync(
-		'https://docs.expo.io/versions/latest/workflow/up-and-running/#cant-see-your-changes',
-	);
-}
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-	},
-	developmentModeText: {
-		marginBottom: 20,
-		color: 'rgba(0,0,0,0.4)',
-		fontSize: 14,
-		lineHeight: 19,
-		textAlign: 'center',
-	},
-	contentContainer: {
-		paddingTop: 30,
-	},
-	welcomeContainer: {
-		alignItems: 'center',
-		marginTop: 10,
-		marginBottom: 20,
-	},
-	welcomeImage: {
-		width: 100,
-		height: 80,
-		resizeMode: 'contain',
-		marginTop: 3,
-		marginLeft: -10,
-	},
-	getStartedContainer: {
-		alignItems: 'center',
-		marginHorizontal: 50,
-	},
-	homeScreenFilename: {
-		marginVertical: 7,
-	},
-	codeHighlightText: {
-		color: 'rgba(96,100,109, 0.8)',
-	},
-	codeHighlightContainer: {
-		backgroundColor: 'rgba(0,0,0,0.05)',
-		borderRadius: 3,
-		paddingHorizontal: 4,
-	},
-	getStartedText: {
-		fontSize: 17,
-		color: 'rgba(96,100,109, 1)',
-		lineHeight: 24,
-		textAlign: 'center',
-	},
-	tabBarInfoContainer: {
-		position: 'absolute',
-		bottom: 0,
-		left: 0,
-		right: 0,
-		...Platform.select({
-			ios: {
-				shadowColor: 'black',
-				shadowOffset: { width: 0, height: -3 },
-				shadowOpacity: 0.1,
-				shadowRadius: 3,
-			},
-			android: {
-				elevation: 20,
-			},
-		}),
-		alignItems: 'center',
-		backgroundColor: '#fbfbfb',
-		paddingVertical: 20,
-	},
-	tabBarInfoText: {
-		fontSize: 17,
-		color: 'rgba(96,100,109, 1)',
-		textAlign: 'center',
-	},
-	navigationFilename: {
-		marginTop: 5,
-	},
-	helpContainer: {
-		marginTop: 15,
-		alignItems: 'center',
-	},
-	helpLink: {
-		paddingVertical: 15,
-	},
-	helpLinkText: {
-		fontSize: 14,
-		color: '#2e78b7',
-	},
-});
+export default Home;

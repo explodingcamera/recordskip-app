@@ -22,10 +22,10 @@ export default function App(props) {
 		);
 	} else {
 		return (
-			<View>
-				{Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+			<>
+				<StatusBar barStyle="default" />
 				<AppNavigator />
-			</View>
+			</>
 		);
 	}
 }
