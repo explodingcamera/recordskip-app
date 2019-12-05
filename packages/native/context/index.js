@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import { AsyncStorage } from 'react-native';
 
 /// default context values
 const defaultCTX = {
@@ -39,7 +39,7 @@ RSProvider.propTypes = {};
 RSProvider.defaultProps = {};
 
 function useRS() {
-	const player = useRS(RSContext);
+	const player = useContext(RSContext);
 
 	return player;
 }

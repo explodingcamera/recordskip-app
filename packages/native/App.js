@@ -5,12 +5,11 @@ import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import React, { useState, useEffect } from 'react';
 import { Platform, StatusBar, View, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { RSProvider, useRS } from './context';
 
 import AppNavigator from './navigation/app-navigator';
 
-export default function App(props) {
+function App(props) {
 	const [isLoadingComplete, setLoadingComplete] = useState(false);
 	const ctx = useRS();
 
@@ -31,12 +30,20 @@ export default function App(props) {
 		);
 	} else {
 		return (
-			<RSProvider>
+			<>
 				<StatusBar barStyle="default" />
 				<AppNavigator />
-			</RSProvider>
+			</>
 		);
 	}
+}
+
+export default function Root(props) {
+	return (
+		<RSProvider>
+			<App {...props} />
+		</RSProvider>
+	);
 }
 
 async function loadResourcesAsync() {

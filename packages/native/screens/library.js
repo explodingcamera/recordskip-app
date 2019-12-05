@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import { Text } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
+
+import Item from './../components/item';
 
 const Wrapper = styled(SafeAreaView)`
 	flex: 1;
@@ -10,12 +11,23 @@ const Wrapper = styled(SafeAreaView)`
 	align-items: center;
 `;
 
+const Items = styled.FlatList`
+	flex: 1;
+	flex-direction: column;
+	padding: 20px;
+`;
+
+const items = [{ artist: 'kummer', title: 'kiox' }];
+
 function Libary() {
 	return (
 		<>
 			<Wrapper forceInset={{ top: 'always' }}>
-				<Text>This is top text.</Text>
-				<Text>This is bottom text.</Text>
+				<Items
+					data={items}
+					renderItem={({ item }) => <Item {...item} />}
+					keyExtractor={item => items.indexOf(item) + '-' + item.title}
+				/>
 			</Wrapper>
 		</>
 	);

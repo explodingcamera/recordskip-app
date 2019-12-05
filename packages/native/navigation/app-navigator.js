@@ -41,7 +41,7 @@ export default function App() {
 									name="library"
 									component={Library}
 									options={{
-										tabBarColor: 'transparent',
+										tabBarColor: 'grey',
 										tabBarLabel: 'library',
 										tabBarIcon: ({ color }) => (
 											<Feather
@@ -57,14 +57,9 @@ export default function App() {
 									component={Home}
 									options={{
 										tabBarColor: 'blue',
-										tabBarLabel: '',
+										tabBarLabel: 'camera',
 										tabBarIcon: ({ color }) => (
-											<Feather
-												name="camera"
-												color={color}
-												size={23}
-												style={{ paddingTop: 6 }}
-											/>
+											<Feather name="camera" color={color} size={23} />
 										),
 									}}
 								/>

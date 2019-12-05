@@ -28,7 +28,7 @@ const ErrorWrapper = styled.View`
 	left: 0;
 	right: 0;
 	bottom: 0;
-	justifycontent: center;
+	justify-content: center;
 	alignitems: center;
 `;
 
@@ -39,22 +39,21 @@ const ErrorMessage = styled.Text`
 
 const Camera = styled(ExpoCamera)`
 	flex: 1;
-	justifycontent: space-between;
+	justify-content: space-between;
 `;
 
 const CameraButton = styled(Image)`
 	width: 100;
 	height: 100;
-	marginbottom: 20;
-	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+	margin-bottom: 20;
 `;
 
 const IconWrapper = styled.View`
-	padding: 5;
+	padding: 5px;
 	align-self: flex-end;
 `;
 const Icon = styled(Feather)`
-	padding: 5;
+	padding: 5px;
 `;
 
 function Home() {
