@@ -18,11 +18,11 @@
     "splash": {
       "image": "./assets/images/logo-white.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#202124"
     },
     "androidNavigationBar": {
       "barStyle": "light-content",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#202124"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

@@ -4,8 +4,7 @@ import styled from 'styled-components/native';
 const ItemWrapper = styled.View`
 	flex-direction: row;
 	justify-content: center;
-	padding: 10px;
-	background-color: black;
+	padding: 10px 10px 0 0;
 `;
 
 const ItemImage = styled.Image`
@@ -27,15 +26,25 @@ const ItemTableRowWrapper = styled.View`
 `;
 
 const ItemTableText = styled.Text`
+	color: white;
+	font-family: 'roboto-mono-light';
 	flex: 1;
 	align-self: stretch;
 `;
-const ItemTableText2 = styled(ItemTableText)``;
+const ItemTableText2 = styled(ItemTableText)`
+	font-family: 'roboto-mono-regular';
+`;
 
 const ItemTitle = styled.Text``;
 
-const ItemTitleText = styled.Text``;
-const ItemTitleText2 = styled(ItemTitleText)``;
+const ItemTitleText = styled.Text`
+	color: white;
+	font-size: 22px;
+	font-family: 'roboto-mono-bold';
+`;
+const ItemTitleText2 = styled(ItemTitleText)`
+	font-family: 'roboto-mono-regular';
+`;
 
 const ItemIconRow = styled.View`
 	flex: 1;
@@ -56,7 +65,7 @@ const Item = ({ title, artist }) => {
 	return (
 		<ItemWrapper>
 			<ItemImage
-				source={{ uri: 'https://facebook.github.io/react/logo-og.png' }}
+				source={{ uri: 'https://rap.de/wp-content/uploads/Kummer-Kiox.png' }}
 			/>
 			<ItemMain>
 				<ItemTitle>
@@ -64,7 +73,7 @@ const Item = ({ title, artist }) => {
 					<ItemTitleText2> - {title}</ItemTitleText2>
 				</ItemTitle>
 				<ItemTable>
-					<ItemTableRow value={['1', '2']} />
+					<ItemTableRow value={['released', '10/1/2019']} />
 				</ItemTable>
 				<ItemIconRow>
 					<ItemIconRowSpacer />

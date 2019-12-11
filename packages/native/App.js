@@ -7,7 +7,14 @@ import React, { useState, useEffect } from 'react';
 import { Platform, StatusBar, View, Text } from 'react-native';
 import { RSProvider, useRS } from './context';
 
+import styled from 'styled-components/native';
+
 import AppNavigator from './navigation/app-navigator';
+
+const Background = styled.View`
+	flex: 1;
+	background-color: #202124;
+`;
 
 function App(props) {
 	const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -30,10 +37,10 @@ function App(props) {
 		);
 	} else {
 		return (
-			<>
+			<Background>
 				<StatusBar barStyle="default" />
 				<AppNavigator />
-			</>
+			</Background>
 		);
 	}
 }
@@ -49,6 +56,13 @@ export default function Root(props) {
 async function loadResourcesAsync() {
 	await Promise.all([
 		Asset.loadAsync([require('./assets/images/logo-white.png')]),
+		Font.loadAsync({
+			'roboto-mono-bold': require('./assets/fonts/RobotoMono-Bold.ttf'),
+			'roboto-mono-light': require('./assets/fonts/RobotoMono-Light.ttf'),
+			'roboto-mono-medium': require('./assets/fonts/RobotoMono-Medium.ttf'),
+			'roboto-mono-regular': require('./assets/fonts/RobotoMono-Regular.ttf'),
+			'roboto-mono-thin': require('./assets/fonts/RobotoMono-Thin.ttf'),
+		}),
 	]);
 }
 

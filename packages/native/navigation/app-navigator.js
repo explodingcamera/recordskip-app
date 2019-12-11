@@ -41,7 +41,7 @@ export default function App() {
 									name="library"
 									component={Library}
 									options={{
-										tabBarColor: 'grey',
+										tabBarColor: '#202124',
 										tabBarLabel: 'library',
 										tabBarIcon: ({ color }) => (
 											<Feather
@@ -67,7 +67,7 @@ export default function App() {
 									name="explore"
 									component={Explore}
 									options={{
-										tabBarColor: 'grey',
+										tabBarColor: '#202124',
 										tabBarLabel: 'explore',
 										tabBarIcon: ({ color }) => (
 											<Feather

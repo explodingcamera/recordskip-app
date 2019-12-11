@@ -8,6 +8,7 @@ const Wrapper = styled(SafeAreaView)`
 	flex: 1;
 	justify-content: space-between;
 	align-items: center;
+	background-color: #202124;
 `;
 
 function Explore() {
