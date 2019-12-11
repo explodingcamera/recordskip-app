@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 const ItemWrapper = styled.View`
-	flex: 1;
 	flex-direction: row;
 	justify-content: center;
 	padding: 10px;
+	background-color: black;
 `;
 
 const ItemImage = styled.Image`
@@ -46,32 +46,32 @@ const ItemIconRowSpacer = styled.View`
 `;
 
 const ItemTableRow = ({ value }) => (
-  <ItemTableRowWrapper>
-    <ItemTableText>{value[0]}</ItemTableText>
-    <ItemTableText2>{value[1]}</ItemTableText2>
-  </ItemTableRowWrapper>
+	<ItemTableRowWrapper>
+		<ItemTableText>{value[0]}</ItemTableText>
+		<ItemTableText2>{value[1]}</ItemTableText2>
+	</ItemTableRowWrapper>
 );
 
 const Item = ({ title, artist }) => {
-  return (
-    <ItemWrapper>
-      <ItemImage
-        source={{ uri: 'https://facebook.github.io/react/logo-og.png' }}
-      />
-      <ItemMain>
-        <ItemTitle>
-          <ItemTitleText>{artist}</ItemTitleText>
-          <ItemTitleText2> - {title}</ItemTitleText2>
-        </ItemTitle>
-        <ItemTable>
-          <ItemTableRow value={['1', '2']} />
-        </ItemTable>
-        <ItemIconRow>
-          <ItemIconRowSpacer />
-        </ItemIconRow>
-      </ItemMain>
-    </ItemWrapper>
-  );
+	return (
+		<ItemWrapper>
+			<ItemImage
+				source={{ uri: 'https://facebook.github.io/react/logo-og.png' }}
+			/>
+			<ItemMain>
+				<ItemTitle>
+					<ItemTitleText>{artist}</ItemTitleText>
+					<ItemTitleText2> - {title}</ItemTitleText2>
+				</ItemTitle>
+				<ItemTable>
+					<ItemTableRow value={['1', '2']} />
+				</ItemTable>
+				<ItemIconRow>
+					<ItemIconRowSpacer />
+				</ItemIconRow>
+			</ItemMain>
+		</ItemWrapper>
+	);
 };
 
 export default Item;
