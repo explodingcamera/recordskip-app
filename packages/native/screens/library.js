@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components/native';
 
 import SafeAreaView from 'react-native-safe-area-view';
+import { IconButton } from 'react-native-paper';
 
 import Item from './../components/item';
 
@@ -20,12 +21,18 @@ const Items = styled.FlatList.attrs(() => ({
 	flex: 1;
 `;
 
+const TitleView = styled.View`
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 20px 10px 20px;
+`;
+
 const Title = styled.Text`
 	font-family: 'roboto-mono-regular';
 	color: white;
 	font-size: 50;
 	align-self: flex-start;
-	padding: 20px 0 10px 20px;
 `;
 
 const items = [
@@ -48,7 +55,15 @@ function Libary() {
 	return (
 		<>
 			<Wrapper forceInset={{ top: 'always' }}>
-				<Title>Library</Title>
+				<TitleView>
+					<Title>Library</Title>
+					<IconButton
+						icon="plus"
+						size={40}
+						color="white"
+						onPress={() => console.log('Pressed')}
+					/>
+				</TitleView>
 				<Items
 					data={items}
 					renderItem={({ item }) => <Item {...item} />}

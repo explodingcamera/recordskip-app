@@ -3,9 +3,9 @@
     "packagerOpts": {
       "config": "metro.config.js"
     },
+    "privacy": "unlisted",
     "name": "RecordSkip",
-    "slug": "recordskip",
-    "privacy": "public",
+    "slug": "expo.io/@explodingcamera/recordskip",
     "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
@@ -31,7 +31,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.explodingcamera.recordskip"
+    },
+    "android": {
+      "package": "com.explodingcamera.recordskip"
     }
   }
 }

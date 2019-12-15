@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 import SafeAreaView from 'react-native-safe-area-view';
 import * as Permissions from 'expo-permissions';
 
-import { Feather } from '@expo/vector-icons';
+import { IconButton } from 'react-native-paper';
 import { Camera as ExpoCamera } from 'expo-camera';
 import { useFocusEffect, useIsFocused } from '@react-navigation/core';
 
@@ -52,7 +52,7 @@ const IconWrapper = styled.View`
 	padding: 5px;
 	align-self: flex-end;
 `;
-const Icon = styled(Feather)`
+const Icon = styled(IconButton)`
 	padding: 5px;
 `;
 
@@ -105,9 +105,9 @@ function Home() {
 				)}
 
 				<IconWrapper>
-					<Icon name="settings" size={26} color="white" />
+					<Icon icon="settings" size={26} color="white" />
 					<Icon
-						name={flashEnabled ? 'zap-off' : 'zap'}
+						icon={flashEnabled ? 'zap-off' : 'zap'}
 						onPress={() => setFlashEnabled(e => !e)}
 						size={26}
 						color="white"

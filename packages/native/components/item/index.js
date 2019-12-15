@@ -1,16 +1,18 @@
 import React from 'react';
+import { TouchableRipple } from 'react-native-paper';
 import styled from 'styled-components/native';
 
 const ItemWrapper = styled.View`
 	flex-direction: row;
 	justify-content: center;
-	padding: 10px 10px 0 0;
+	padding: 5px 10px;
 `;
 
 const ItemImage = styled.Image`
 	width: 100;
 	height: 100;
 `;
+
 const ItemMain = styled.View`
 	align-self: stretch;
 	width: 200;
@@ -63,23 +65,28 @@ const ItemTableRow = ({ value }) => (
 
 const Item = ({ title, artist }) => {
 	return (
-		<ItemWrapper>
-			<ItemImage
-				source={{ uri: 'https://rap.de/wp-content/uploads/Kummer-Kiox.png' }}
-			/>
-			<ItemMain>
-				<ItemTitle>
-					<ItemTitleText>{artist}</ItemTitleText>
-					<ItemTitleText2> - {title}</ItemTitleText2>
-				</ItemTitle>
-				<ItemTable>
-					<ItemTableRow value={['released', '10/1/2019']} />
-				</ItemTable>
-				<ItemIconRow>
-					<ItemIconRowSpacer />
-				</ItemIconRow>
-			</ItemMain>
-		</ItemWrapper>
+		<TouchableRipple
+			onPress={() => console.log('Pressed')}
+			rippleColor="rgba(0, 0, 0, .32)"
+		>
+			<ItemWrapper>
+				<ItemImage
+					source={{ uri: 'https://rap.de/wp-content/uploads/Kummer-Kiox.png' }}
+				/>
+				<ItemMain>
+					<ItemTitle>
+						<ItemTitleText>{artist}</ItemTitleText>
+						<ItemTitleText2> - {title}</ItemTitleText2>
+					</ItemTitle>
+					<ItemTable>
+						<ItemTableRow value={['released', '10/1/2019']} />
+					</ItemTable>
+					<ItemIconRow>
+						<ItemIconRowSpacer />
+					</ItemIconRow>
+				</ItemMain>
+			</ItemWrapper>
+		</TouchableRipple>
 	);
 };
 
